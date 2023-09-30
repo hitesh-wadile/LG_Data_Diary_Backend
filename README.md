@@ -50,6 +50,7 @@ We extend our heartfelt gratitude to the talented members of the Akatsuki Coding
 - **[Hitesh Wadile](https://github.com/username)**
 - **[Tanmay Mahale](https://github.com/username)**
 - **[Pruthviraj Chaudhari](https://github.com/pruthviraj-chaudhari)**
+- **[Saurav Patil](https://github.com/Scammerpatil)**
 
 
 
