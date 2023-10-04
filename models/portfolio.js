@@ -11,21 +11,21 @@ const activitySchema = new mongoose.Schema({
 
 
 const certificateSchema = new mongoose.Schema({
-    name: { type: String, required: true }, 
-    issueDate: { type: Date, required: true }, 
+    name: { type: String }, 
+    issueDate: { type: Date }, 
     description: { type: String }, 
-    url: { type: String, required: true }, 
+    url: { type: String }, 
 });
 
 
 const resumeSchema = new mongoose.Schema({
-    title: { type: String, required: true },  
-    url: { type: String, required: true }, 
+    title: { type: String },  
+    url: { type: String }, 
 });
 
 
 const projectSchema = new mongoose.Schema({
-    title: { type: String, required: true }, 
+    title: { type: String }, 
     description: { type: String }, 
     skills: [String], 
     startDate: { type: Date }, 

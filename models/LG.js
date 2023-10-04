@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 
 const lgSchema = new mongoose.Schema({
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    email: { type: String, required: true, unique: true, trim: true },
-    mobile: { type: String, required: true, unique: true, trim: true },
-    password: { type: String, required: true },
-    profilePhoto: {type: String},
+    firstName: { type: String },
+    middleName: { type: String },
+    lastName: { type: String },
+    email: { type: String, trim: true },
+    mobile: { type: String, trim: true },
+    password: { type: String },
+    profilePhoto: {type: String },
     expertise: { type: String },
     experience: { type: Number },
 });

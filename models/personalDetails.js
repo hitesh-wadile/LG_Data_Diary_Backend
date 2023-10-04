@@ -9,7 +9,6 @@ const StudentDetailSchema = new mongoose.Schema({
     },
     PRN: {
         type: String,
-        unique: true,
         trim: true
     },
     yearOfAdmission: {
@@ -56,7 +55,7 @@ const StudentDetailSchema = new mongoose.Schema({
         type: Number
     },
     dateOfBirth: {
-        type: date
+        type: Date
     },
     hostelRoomNumber: {
         type: String
@@ -89,17 +88,6 @@ const StudentDetailSchema = new mongoose.Schema({
             url: { type: String, trim: true },
         }
     ],
-    parent: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "parentDetails",
-        }
-    ],
-    bank: { type: mongoose.Schema.Types.ObjectId, ref: "bankDetails" },
-    academic: { type: mongoose.Schema.Types.ObjectId, ref: "academicDetails" },
-    engineering: { type: mongoose.Schema.Types.ObjectId, ref: "engineeringDetails" },
-    portfolio: { type: mongoose.Schema.Types.ObjectId, ref: "portfolio" },
-    LGdetails: { type: mongoose.Schema.Types.ObjectId, ref: "LGdetails" },
 });
 
 
