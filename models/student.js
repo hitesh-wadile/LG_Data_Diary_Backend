@@ -53,15 +53,4 @@ const studentSchema = new mongoose.Schema({
 });
 
 
-// pre-save middleware to set referenced fields to null before saving
-studentSchema.pre("save", function (next) {
-    this.personalDetails = null; 
-    this.bank = null; 
-    this.academic = null; 
-    this.engineering = null; 
-    this.portfolio = null; 
-    this.LGdetails = null; 
-    next();
-});
-
 module.exports = mongoose.model('Student', studentSchema);
