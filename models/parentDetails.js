@@ -16,5 +16,21 @@ const parentSchema = new mongoose.Schema({
     email: { type: String },
 });
 
-module.exports = mongoose.model("ParentDetail", parentSchema);
+const defaultParentDetails = {
+    relationship: null,
+    name: null,
+    qualification: null,
+    occupation: null,
+    address: {
+        street: null,
+        city: null,
+        district: null,
+        state: null,
+        pincode: null,
+    },
+    mobile: null,
+    email: null,
+}
 
+module.exports = mongoose.model("ParentDetail", parentSchema);
+module.exports.defaultParentDetails = defaultParentDetails;

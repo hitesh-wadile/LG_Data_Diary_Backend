@@ -10,9 +10,15 @@ const Bank = require("../models/bankDetails");
 const Academic = require("../models/academicDetails");
 const Engineering = require("../models/engineeringDetails");
 const Portfolio = require("../models/portfolio");
-const LGdetails = require("../models/LG");
 const bodyParser = require("body-parser");
 const LG = require("../models/LG");
+const { defaultProfile } = require("../models/personalDetails");
+const { defaultBankDetails } = require("../models/bankDetails")
+const { defaultParentDetails } = require("../models/parentDetails")
+const { defaultAcademicDetails } = require("../models/academicDetails")
+const { defaultEngineeringDetails } = require("../models/engineeringDetails")
+const { defaultPortfolio } = require("../models/portfolio");
+const { defaultLGdetails } = require("../models/LG");
 require("dotenv").config();
 
 
@@ -66,167 +72,16 @@ exports.studentSignup = async (req, res) => {
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const profileDetails = await Profile.create({
-            profilePhoto: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
-            signature: null,
-            PRN: null,
-            yearOfAdmission: null,
-            yearOfPassing: null,
-            currentYearOfStudy: null,
-            aadharNumber: null,
-            gender: null,
-            category: null,
-            religion: null,
-            caste: null,
-            nationality: null,
-            domicile: null,
-            bloodGroup: null,
-            maritalStatus: null,
-            weight: null,
-            height: null,
-            dateOfBirth: null,
-            hostelRoomNumber: null,
-            currentAddress: {
-                street: null,
-                city: null,
-                district: null,
-                state: null,
-                pincode: null,
-            },
-            permanentAddress: {
-                street: null,
-                city: null,
-                district: null,
-                state: null,
-                pincode: null,
-            },
-            mobile: null,
-            friendMobile: null,
-            studentDocuments: [],
-            parent: [],
-        });
+        defaultProfile.profilePhoto = `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`;
 
-        const bankDetails = await Bank.create({
-            bankName: null,
-            ifscCode: null,
-            accountNumber: null,
-        })
+        const profileDetails = await Profile.create(defaultProfile);
+        const bankDetails = await Bank.create(defaultBankDetails);
+        const parentDetails = await Parent.create(defaultParentDetails);
+        const academicDetails = await Academic.create(defaultAcademicDetails);
+        const engineeringDetails = await Engineering.create(defaultEngineeringDetails);
+        const portfolioDetails = Portfolio.create(defaultPortfolio);
+        const LGdetails = LG.create(defaultLGdetails);
 
-        const parentDetails = await Parent.create({
-            relationship: null,
-            name: null,
-            qualification: null,
-            occupation: null,
-            address: {
-                street: null,
-                city: null,
-                district: null,
-                state: null,
-                pincode: null,
-            },
-            mobile: null,
-            email: null,
-        })
-
-        const academicDetails = await Academic.create({
-            SSC: {
-                instituteName: null,
-                board: null,
-                yearOfAdmission: null,
-                yearOfPassing: null,
-                marksObtained: null,
-                percentage: null,
-            },
-            HSC: {
-                instituteName: null,
-                board: null,
-                yearOfAdmission: null,
-                yearOfPassing: null,
-                marksObtained: null,
-                percentage: null,
-            },
-            diplomaDetails: {
-                instituteName: null,
-                board: null,
-                branch: null,
-                yearOfAdmission: null,
-                yearOfPassing: null,
-                marks: {
-                    sem1: null,
-                    sem2: null,
-                    sem3: null,
-                    sem4: null,
-                    sem5: null,
-                    sem6: null,
-                },
-                percentage: null,
-            }
-        })
-
-        const engineeringDetails = await Engineering.create({
-            branch: null,
-            year: null,
-            semesters: [
-                {
-                    semesterNumber: null,
-                    subjects: [],
-                    sgpa: null,
-                    cgpa: null,
-                },
-            ],
-        })
-
-        const defaultActivity = {
-            activityType: null,
-            name: null,
-            date: null,
-            organizer: null,
-            description: null,
-        };
-
-        const defaultCertificate = {
-            name: null,
-            issueDate: null,
-            description: null,
-            url: null,
-        };
-
-        const defaultResume = {
-            title: null,
-            url: null,
-        };
-
-        const defaultProject = {
-            title: null,
-            description: null,
-            skills: [],
-            startDate: null,
-            endDate: null,
-            url: null,
-        };
-
-        const portfolioDetails = Portfolio.create({
-            activities: [defaultActivity],
-            certificates: [defaultCertificate],
-            resumes: [defaultResume],
-            projects: [defaultProject],
-        })
-
-        const LGdetails = LG.create({
-            firstName: null,
-            middleName: null,
-            lastName: null,
-            email: null,
-            mobile: null,
-            password: null,
-            profilePhoto: null,
-            expertise: null,
-            experience: null,
-        })
-
-
-
-        // Create a new Student document with referenced fields set to null
         const student = await Student.create({
             firstName,
             middleName,
@@ -263,12 +118,10 @@ exports.login = async (req, res) => {
 
         const { email, password } = req.body
 
-        // Find student with provided email
         const student = await Student.findOne({ email })
 
         // If student not found with provided email
         if (!student) {
-            // Return 401 Unauthorized status code with error message
             return res.status(401).json({
                 success: false,
                 message: `Student is not Registered with Us Please SignUp to Continue`,
@@ -356,7 +209,7 @@ exports.sendotp = async (req, res) => {
         const otpPayload = { email, otp };
 
         const otpBody = await OTP.create(otpPayload);
-
+        
         console.log("OTP Body", otpBody);
 
         res.status(200).json({

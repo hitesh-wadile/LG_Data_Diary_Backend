@@ -12,5 +12,17 @@ const lgSchema = new mongoose.Schema({
     experience: { type: Number },
 });
 
-module.exports = mongoose.model("LGdetail", lgSchema);
+const defaultLGdetails = {
+    firstName: null,
+    middleName: null,
+    lastName: null,
+    email: null,
+    mobile: null,
+    password: null,
+    profilePhoto: null,
+    expertise: null,
+    experience: null,
+}
 
+module.exports = mongoose.model("LGdetail", lgSchema);
+module.exports.defaultLGdetails = defaultLGdetails;

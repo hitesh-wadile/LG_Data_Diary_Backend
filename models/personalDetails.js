@@ -91,4 +91,45 @@ const StudentDetailSchema = new mongoose.Schema({
 });
 
 
+const defaultProfile = {
+    profilePhoto: null,
+    signature: null,
+    PRN: null,
+    yearOfAdmission: null,
+    yearOfPassing: null,
+    currentYearOfStudy: null,
+    aadharNumber: null,
+    gender: null,
+    category: null,
+    religion: null,
+    caste: null,
+    nationality: null,
+    domicile: null,
+    bloodGroup: null,
+    maritalStatus: null,
+    weight: null,
+    height: null,
+    dateOfBirth: null,
+    hostelRoomNumber: null,
+    currentAddress: {
+        street: null,
+        city: null,
+        district: null,
+        state: null,
+        pincode: null,
+    },
+    permanentAddress: {
+        street: null,
+        city: null,
+        district: null,
+        state: null,
+        pincode: null,
+    },
+    mobile: null,
+    friendMobile: null,
+    studentDocuments: [],
+    parent: [],
+};
+
 module.exports = mongoose.model("PersonalDetail", StudentDetailSchema);
+module.exports.defaultProfile = defaultProfile;

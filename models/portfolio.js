@@ -41,7 +41,43 @@ const portfolioSchema = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model("Portfolio", portfolioSchema);
+const defaultActivity = {
+    activityType: null,
+    name: null,
+    date: null,
+    organizer: null,
+    description: null,
+};
 
+const defaultCertificate = {
+    name: null,
+    issueDate: null,
+    description: null,
+    url: null,
+};
+
+const defaultResume = {
+    title: null,
+    url: null,
+};
+
+const defaultProject = {
+    title: null,
+    description: null,
+    skills: [],
+    startDate: null,
+    endDate: null,
+    url: null,
+};
+
+const defaultPortfolio = {
+    activities: [defaultActivity],
+    certificates: [defaultCertificate],
+    resumes: [defaultResume],
+    projects: [defaultProject],
+};
+
+module.exports = mongoose.model("Portfolio", portfolioSchema);
+module.exports.defaultPortfolio = defaultPortfolio;
 
 

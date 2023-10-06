@@ -6,4 +6,11 @@ const bankSchema = new mongoose.Schema({
     accountNumber: { type: String },
 });
 
+const defaultBankDetails = {
+    bankName: null,
+    ifscCode: null,
+    accountNumber: null,
+}
+
 module.exports = mongoose.model("BankDetail", bankSchema);
+module.exports.defaultBankDetails = defaultBankDetails;

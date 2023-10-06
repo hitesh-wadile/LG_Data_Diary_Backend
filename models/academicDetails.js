@@ -35,4 +35,40 @@ const academicSchema = new mongoose.Schema({
     }
 });
 
+const defaultAcademicDetails = {
+    SSC: {
+        instituteName: null,
+        board: null,
+        yearOfAdmission: null,
+        yearOfPassing: null,
+        marksObtained: null,
+        percentage: null,
+    },
+    HSC: {
+        instituteName: null,
+        board: null,
+        yearOfAdmission: null,
+        yearOfPassing: null,
+        marksObtained: null,
+        percentage: null,
+    },
+    diplomaDetails: {
+        instituteName: null,
+        board: null,
+        branch: null,
+        yearOfAdmission: null,
+        yearOfPassing: null,
+        marks: {
+            sem1: null,
+            sem2: null,
+            sem3: null,
+            sem4: null,
+            sem5: null,
+            sem6: null,
+        },
+        percentage: null,
+    }
+}
+
 module.exports = mongoose.model("AcademicDetail", academicSchema);
+module.exports.defaultAcademicDetails = defaultAcademicDetails;
